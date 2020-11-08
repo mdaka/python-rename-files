@@ -30,12 +30,12 @@ else:
 def getAllowedImageTypes():
     return ['.png', '.jpg', 'jpeg']
 
-def createDirectory(dirName):
-    if not os.path.exists(dirName):
-        os.makedirs(dirName)
-    else:
-        print("The directory has not been created because it already existed: ", dirName)
-    return dirName
+def createDirectoryIfNotExists(directoryPath):
+    if not os.path.exists(directoryPath):
+        os.makedirs(directoryPath)
+        return False
+    
+    return True # Directory already exist
 
 
 def getNewImageName(path, prefixName, extension):
@@ -63,8 +63,11 @@ def main():
     destFolderPath = os.path.join(folderPath, newFolderName)
 
     # os.path.join(os.getcwd() , newFolderName) # This will get the path where the script file is running
-    destDirectory = createDirectory(destFolderPath) # destDirectory = createDirectory('C:\\Users\\mdaka\\Downloads\\icons\\2 - Copy\\test\\')
-    
+    isExist = createDirectoryIfNotExists(destFolderPath) # createDirectoryIfNotExists('C:\\Users\\mdaka\\Downloads\\icons\\2 - Copy\\test\\')
+    if isExist:
+        print("The directory has not been created because it already existed: ", destFolderPath)
+    print("***********************")
+
     allowedImageTypes = getAllowedImageTypes()
     for fileOrFolder in os.scandir(folderPath):
         
@@ -77,16 +80,16 @@ def main():
 
             if extension in allowedImageTypes:
                 newFileName = getNewImageName(srcPath,prefixName,extension)
-                copyFile(srcPath, destDirectory, newFileName)
+                copyFile(srcPath, destFolderPath, newFileName)
                 
             elif extension in ['.psd', '.eps', '.svg']:
                 newFileName = getFileName(srcPath,prefixName,extension)
-                copyFile(srcPath, destDirectory, newFileName)
+                copyFile(srcPath, destFolderPath, newFileName)
 
             elif extension in ['.txt', '.pdf']:
                 tempFileName = prefixName + '_' + fileName
                 newFileName = getFileName(srcPath,tempFileName ,extension)
-                copyFile(srcPath, destDirectory, newFileName)
+                copyFile(srcPath, destFolderPath, newFileName)
 
 
 
