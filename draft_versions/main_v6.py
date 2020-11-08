@@ -4,12 +4,9 @@
 #   https://pillow.readthedocs.io/en/3.0.x/handbook/tutorial.html
 #   https://pythonexamples.org/python-pillow-get-image-size/
 #   https://realpython.com/working-with-files-in-python/#getting-file-attributes
-
-#   destDirectory = os.path.join(folderPath, destDirectory) # instead of folderPath + '\\' +  destDirectory
+#   print(os.stat(srcPath))
 # }
-
-# Example of running this script => python main_v6.py abc 12 "C:\coding\python_icon_script"
-# Usage Example => python main_v6.py 1_logout 1_logout "C:\Users\mdaka\Downloads\icons\2 - Copy"
+# Usage Example => python main_v6.py 1_logout 1_logout "C:\Users\mdaka\Downloads\icons\demo_folder"
 
 
 import os
@@ -22,7 +19,7 @@ from PIL import Image
 if len(sys.argv) < 3:
     raise ValueError('Please provide the following args [ index, newFolderName, pathToFolder] to make a new folder with all files with new generated names.')
 
-#folderPath = r'C:\Users\mdaka\Downloads\icons\1_logs'
+#folderPath = r'C:\Users\mdaka\Downloads\icons\demo_folder'
 prefixName = sys.argv[1]
 newFolderName = sys.argv[2]
 
@@ -32,14 +29,11 @@ else:
     folderPath = os.getcwd() # We can use os.getcwdb() or os.path.dirname(os.path.abspath(__file__))
 
 
-# print(os.stat(srcPath))
-
-
 def createDirectory(dirName):
     if not os.path.exists(dirName):
         os.makedirs(dirName)
     else:
-        print("Directory has not beed created because its already existed: ", dirName)
+        print("The directory has not been created because its already existed: ", dirName)
     return dirName
 
 def getAllowedImageTypes():
@@ -51,7 +45,7 @@ def getNewImageName(path, prefixName, extension):
     return newFileName
 
 def getFileName(path, prefixName, extension):
-    fileType = (extension[1:]).lower() # remove the first dot from the string 
+    fileType = (extension[1:]).lower() # Remove the first dot from the string 
     
     if extension in ['.txt', '.pdf']:
         newFileName = prefixName + extension

@@ -4,12 +4,7 @@
 #   https://pillow.readthedocs.io/en/3.0.x/handbook/tutorial.html
 #   https://pythonexamples.org/python-pillow-get-image-size/
 #   https://realpython.com/working-with-files-in-python/#getting-file-attributes
-
-#   destDirectory = os.path.join(folderPath, destDirectory) # instead of folderPath + '\\' +  destDirectory
 # }
-
-# Example of running this script => python main_v6.py abc 12 "C:\coding\python_icon_script"
-# Usage Example => python main_v6.py 1_logout 1_logout "C:\Users\mdaka\Downloads\icons\2 - Copy"
 
 
 import os
@@ -22,7 +17,7 @@ from PIL import Image
 if len(sys.argv) < 3:
     raise ValueError('Please provide the following args in this order [ prefixName, newFolderName, pathToSrcFolder] to create a new destination folder with new renamed files...')
 
-#folderPath = r'C:\Users\mdaka\Downloads\icons\1_logs'
+#folderPath = r'C:\Users\mdaka\Downloads\icons\demo_icon'
 prefixName = sys.argv[1]
 newFolderName = sys.argv[2]
 
@@ -32,18 +27,16 @@ else:
     folderPath = os.getcwd() # We can use os.getcwdb() or os.path.dirname(os.path.abspath(__file__))
 
 
-# print(os.stat(srcPath))
-
+def getAllowedImageTypes():
+    return ['.png', '.jpg', 'jpeg']
 
 def createDirectory(dirName):
     if not os.path.exists(dirName):
         os.makedirs(dirName)
     else:
-        print("Directory has not beed created because its already existed: ", dirName)
+        print("The directory has not been created because it already existed: ", dirName)
     return dirName
 
-def getAllowedImageTypes():
-    return ['.png', '.jpg', 'jpeg']
 
 def getNewImageName(path, prefixName, extension):
     im = Image.open(path)
@@ -51,7 +44,7 @@ def getNewImageName(path, prefixName, extension):
     return newFileName
 
 def getFileName(path, prefixName, extension):
-    fileType = (extension[1:]).lower() # remove the first dot from the string 
+    fileType = (extension[1:]).lower() # Remove the first dot from the string and then make all letters with a lowercase
     
     if extension in ['.txt', '.pdf']:
         newFileName = prefixName + extension
@@ -69,7 +62,7 @@ def copyFile(srcFile, destDirectory, newFileName):
 def main():
     destFolderPath = os.path.join(folderPath, newFolderName)
 
-    # os.path.join(os.getcwd() , newFolderName) # this will get the path where the script file is running
+    # os.path.join(os.getcwd() , newFolderName) # This will get the path where the script file is running
     destDirectory = createDirectory(destFolderPath) # destDirectory = createDirectory('C:\\Users\\mdaka\\Downloads\\icons\\2 - Copy\\test\\')
     
     allowedImageTypes = getAllowedImageTypes()
