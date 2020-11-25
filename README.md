@@ -3,21 +3,22 @@
 
 ## Example
 #### Source folder
-![source folder](./imgs/color_wheel_icons.png)
+![source folder](./imgs/color_wheel_icons_min.png)
 #### New Generated folder
-![dest folder](./imgs/new_generated_folder.png)
+![dest folder](./imgs/new_generated_folder_min.png)
 #### Copied files with new names
-![generated icons](./imgs/new_generated_files.png)
+![generated icons](./imgs/new_generated_files_min.png)
 
 ## Usage
 
     [ python script_path prefix_icon_name dest_folder_name src_folder_path ]
 
-    python              => command to run the script file
-    script_path         => location to the python script, in our case in this package it is called main.py
-    prefix_icon_name    => prefix name for each new generated files of type of image
-    dest_folder_name    => the new destination folder name where you need the new images to be generated on
-    src_folder_path     => the source folder path where are found the original icons that we need to copy the same file but with a different name
+    python              => Command to run the script file
+    script_path         => Location to the python script, in this package it is called main.py
+    prefix_icon_name    => Prefix name for each new generated files of type of image
+    dest_folder_name    => New destination folder name where you need the new images to be generated on
+    src_folder_path     => The source folder path where are found the original icons 
+                           that we need to copy the same file but with a different name
 ## Script
 
     python C:\python-rename-files\src\main.py prefix_icon_name new_folder_name src_folder_path
