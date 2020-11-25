@@ -2,9 +2,11 @@
     Select a folder path to rename images depends on width and height
 
 ## Example
-
+#### Source folder
 ![source folder](./imgs/color_wheel_icons.png)
+#### New Generated folder
 ![dest folder](./imgs/new_generated_folder.png)
+#### Copied files with new names
 ![generated icons](./imgs/new_generated_files.png)
 
 ## Usage
@@ -19,7 +21,7 @@
 ## Script
 
     python C:\python-rename-files\src\main.py prefix_icon_name new_folder_name src_folder_path
-    
+
 ![script output after run](./imgs/script_output_after_run.png)
 
 
